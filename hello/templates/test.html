@@ -1,0 +1,35 @@
+{% block content %}
+    <br />
+
+{% for feed in list_rssfeed_entry %}
+
+
+{% if feed %}
+
+<h2>{{ feed.feed.title }}</h2>
+
+{{ forloop.counter }}
+
+{% for entry in feed.entries %}
+<div class=“card”>
+
+<div class=“card-body”>
+
+<h5 class=“card-title”>News Title: {{ entry.title }}</h5>
+
+<p class=“card-text”>Description: {{ entry.description }}</p>
+
+<a href=“{{ entry.link }}” class=“btn btn-primary”>Visit Link</a>
+{{ forloop.counter }}
+</div>
+
+</div><p>{{ entry.published }}</p>
+
+{% endfor %}
+
+{% endif %}
+
+
+{% endfor %}
+
+{% endblock %}

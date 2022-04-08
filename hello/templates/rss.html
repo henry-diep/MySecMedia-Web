@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+RSS Page
+{% endblock %}
+
+
+{% block content %}
+    <br />
+
+{% if feed %}
+
+<h2>{{ feed.feed.title }}</h2>
+
+{% if feed.entries %}
+
+{% for entry in feed.entries %}
+
+<div class=“card”>
+
+<div class=“card-header”>
+
+Feed
+
+</div>
+
+<div class=“card-body”>
+
+<h5 class=“card-title”>News Title: {{ entry.title }}</h5>
+
+<p class=“card-text”>Description: {{ entry.description }}</p>
+
+<a href=“{{ entry.link }}” class=“btn btn-primary”>Visit Link</a>
+
+</div>
+
+</div><p>{{ entry.published }}</p>
+
+ 
+
+
+{% endfor %}
+
+{% endif %}
+
+{% else %}
+
+<br />
+
+<p>Enter your favorite RSS feed above.</p>
+
+{% endif %}
+
+ 
+
+
+{{ feed2 }}
+
+{% endblock %}
+
+

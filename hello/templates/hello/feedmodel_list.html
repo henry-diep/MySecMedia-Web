@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}
+MySecurity Media Cloud
+{% endblock %}
+
+
+{% block content %}
+    <br />
+
+{% for entry in object_list %}
+
+<div class=“card”>
+    <h5 class=“card-title”>{{ entry.Email_Subject }}</h5>
+    <div class=“card-body”>
+    <h6 class=“card-subtitle mb-2 text-muted” style="color:red;">Source: MySecurity Media </h6> 
+        <!-- <a  class="badge badge-info" href="{% url 'hello' %}?channel_url={{entry.feed_site_url}}">{{ entry.feed_site }}</a></h6> -->
+    <!-- <p class=“card-text”>Description: {{ entry.description }} </p> -->
+    <!-- <a href="{% url 'hello'  %}?channel_url={{entry.url_link}}" class=“btn btn-primary”>Read more..</a> -->
+    <!-- <a href= "{% url 'newsletter'  %}" class=“btn btn-primary”>Read more..</a>  -->
+    <button type="button" style="border-color: white; border:0; background-color: white; padding:0px; outline: none; color: blue" data-toggle="modal" data-target="#exampleModalLong">
+        Read more..
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">{{entry.Email_Subject}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {{ entry.Email_Content}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+</div>
+
+<small class="opacity-50 text-nowrap">{{ entry.Date_Received }}</small>
+<hr>
+
+{% endfor %}
+
+ <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}
